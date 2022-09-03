@@ -7,15 +7,10 @@ import (
 )
 
 func main() {
-	html := `<html>
-	<body>
-	<h1>HELLO</h1>
-	<p>This is sample message</p>
-	</body>
-	</html>`
-	tf, err := template.New("index").Parse(html)
+
+	tf, err := template.ParseFiles("templates/hello1.html")
 	if err != nil {
-		log.Fatal(err)
+		tf, _ = template.New("index").Parse(("<html><body><h1>NO TEMP</h1></body></html>"))
 	}
 
 	hh := func(w http.ResponseWriter, rq *http.Request) {
